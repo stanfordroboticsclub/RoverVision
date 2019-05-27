@@ -4,8 +4,8 @@ import sys
 import imutils
 
 
-# cap = cv2.VideoCapture('inside2.m4v')
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('2.mp4')
+# cap = cv2.VideoCapture(0)
 
 # f = open("CalibrateResults/results.txt",'r')
 # data = f.readlines()
@@ -36,7 +36,8 @@ def draw_circle(event,x,y,flags,param):
     # if event == cv2.EVENT_LBUTTONDBLCLK:
     if event == cv2.EVENT_LBUTTONDOWN:
         mouseX,mouseY = x,y
-        print(mouseX,mouseY, "hsv", mode, hsv4[y,x,:])
+        # print(mouseX,mouseY, "hsv", mode, hsv4[y,x,:])
+        print('["', mode, '", ', list(hsv4[y,x,:]) ,'],')
 
 
 
@@ -83,6 +84,28 @@ data = [["bg", [ 99, 116, 149]],
 ["tennis", [ 75, 200, 197]]]
 
 
+data = [[" bg ",  [187, 165, 135] ],
+[" bg ",  [149, 159, 170] ],
+[" bg ",  [138, 140, 168] ],
+[" bg ",  [118, 126, 144] ],
+[" bg ",  [128, 124, 138] ],
+[" bg ",  [37, 36, 43] ],
+[" bg ",  [110, 114, 147] ],
+[" bg ",  [186, 142, 82] ],
+[" bg ",  [255, 255, 255] ],
+[" bg ",  [0, 0, 255] ],
+[" bg ",  [129, 137, 158] ],
+[" bg ",  [102, 110, 124] ],
+[" bg ",  [124, 128, 159] ],
+[" bg ",  [34, 36, 43] ],
+[" bg ",  [50, 50, 58] ],
+[" bg ",  [130, 143, 162] ],
+[" bg ",  [87, 108, 112] ],
+[" bg ",  [84, 76, 74] ],
+[" bg ",  [136, 145, 166] ],
+[" tennis ",  [140, 161, 170] ],
+[" tennis ",  [118, 139, 148] ],
+[" tennis ",  [90, 107, 115] ]]
 def dist(image):
     i_max = np.ones_like(image)
     dis_max = float('inf') * (np.ones_like(image).astype(float))[:,:,0]
@@ -107,7 +130,7 @@ while(True):
         break
 
     # resize the frame, blur it, and convert it to the HSV colour space
-    frame = imutils.resize(frame, width = 600)
+    frame = imutils.resize(frame, width = 1200)
     blurred = cv2.GaussianBlur(frame, (11, 11), 0)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
     hsv4 = cv2.GaussianBlur(frame, (9,9), 0)

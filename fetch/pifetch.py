@@ -21,10 +21,7 @@ def main(argv):
     reference = Subscriber(9010)
     detection_results = Publisher(902 + idx_camera)
 
-    camera = picamera.PiCamera()
-    camera.resolution = capture_res
-    camera.framerate = 10
-
+    camera = picamera.PiCamera(sensor_mode=2, resolution=capture_res, framerate=10)
     while True:
         try:
             cam_params = reference.get()
